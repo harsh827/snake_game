@@ -1,4 +1,5 @@
-function init(){
+function init()
+{
 	canvas = document.getElementById("mycanvas");
 	W = H = canvas.width = canvas.height = 450;
 	pen = canvas.getContext('2d');
@@ -14,26 +15,33 @@ function init(){
 		cells:[],
 		direction:"right",
 
-		createSnake:function(){
-			for(var i=this.init_len;i>0;i--){
+		createSnake:function()
+		{
+			for(var i=this.init_len;i>0;i--)
+			{
 				this.cells.push({x:i, y:0});
 			}
 		},
-		drawSnake:function(){
-			for(var i=0;i<this.cells.length;i++){
+		drawSnake:function()
+		{
+			for(var i=0;i<this.cells.length;i++)
+			{
 				pen.fillStyle = this.color;
 				pen.fillRect(this.cells[i].x*cs, this.cells[i].y*cs, cs-2, cs-2);
 			}
 		},
-		updateSnake:function(){
+		updateSnake:function()
+		{
 			var headX = this.cells[0].x;
 			var headY = this.cells[0].y;
 
-			if(headX==food.x && headY==food.y){
+			if(headX==food.x && headY==food.y)
+			{
 				food= getRandomFood();
 				score=score+1;
 			}
-			else{
+			else
+			{
 				this.cells.pop();
 			}
 			
