@@ -1,9 +1,10 @@
 function init()
 {
+
 	canvas = document.getElementById("mycanvas");
 	W = H = canvas.width = canvas.height = 450;
-	pen = canvas.getContext('2d');
-	cs = 28.2;
+	pen = canvas.getContext('2d'); // pen object to draw
+	cs = 28.2;  // cell size
 	game_over=false;
 	score=0;
 	food = getRandomFood();
@@ -13,20 +14,26 @@ function init()
 		init_len:5,
 		color:"limegreen",
 		cells:[],
-		direction:"right",
+		direction:"right", //default direction of snake
 
 		createSnake:function()
 		{
+			//assigning each cell co-ordinates to make snake
 			for(var i=this.init_len;i>0;i--)
 			{
 				this.cells.push({x:i, y:0});
 			}
 		},
+
+		//for each cell we draw rectangle
 		drawSnake:function()
 		{
 			for(var i=0;i<this.cells.length;i++)
 			{
 				pen.fillStyle = this.color;
+				
+				//multiplying by cell size(cs),so that rectangles will not overlap
+				//space between cells is 2 to make it appear like it
 				pen.fillRect(this.cells[i].x*cs, this.cells[i].y*cs, cs-2, cs-2);
 			}
 		},
