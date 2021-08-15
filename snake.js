@@ -54,19 +54,23 @@ function init()
 			
 			
 			var nextX, nextY;
-			if(this.direction=="right"){
+			if(this.direction=="right")
+			{
 				nextX = headX+1;
 				nextY = headY;
 			}
-			else if(this.direction=="left"){
+			else if(this.direction=="left")
+			{
 				nextX = headX-1;
 				nextY = headY;
 			}
-			else if(this.direction=="down"){
+			else if(this.direction=="down")
+			{
 				nextX = headX;
 				nextY = headY+1;
 			}
-			else{
+			else
+			{
 				nextX = headX;
 				nextY = headY-1;
 			}
@@ -76,7 +80,9 @@ function init()
 			var last_x = Math.round(W/cs);
 			var last_y = Math.round(H/cs);
 
-			if(this.cells[0].y<0 || this.cells[0].x<0 || this.cells[0].x>=last_x || this.cells[0].y>=last_y){
+			//prevents snake from going out
+			if(this.cells[0].y<0 || this.cells[0].x<0 || this.cells[0].x>=last_x || this.cells[0].y>=last_y)
+			{
 				game_over=true;
 			}
 
@@ -106,27 +112,39 @@ function init()
 }
 
 function draw(){
-	pen.clearRect(0,0,W,H);
+	
+	pen.clearRect(0,0,W,H);//erase old rectangle
 	snake.drawSnake();
 	pen.fillStyle = food.color;
 	pen.fillRect(food.x*cs, food.y*cs, cs, cs);
 	
 }
-function update(){
+
+//we can write update directly here,but in OOPS ,each part is modular
+// so every function knows how to update itself
+
+function update()
+{
 	snake.updateSnake();
 }
-function getRandomFood(){
+function getRandomFood()
+{
+	//math.random =generates no bw 0-1
+	//-cs so that whole food inside the grid,,divison by cs to make it multiple of cell size
 	var foodX = Math.round(Math.random()*(W-cs)/cs);
 	var foodY = Math.round(Math.random()*(H-cs)/cs);
-	var food={
+	var food=
+	{
 		x:foodX,
 		y:foodY,
 		color:"red",
 	}
 	return food;
 }
-function gameLoop(){
-	if(game_over==true){
+function gameLoop()
+{
+	if(game_over==true)
+	{
 		clearInterval(f);
 		alert("Game Over. Your Score is : "+score);
 		return;
