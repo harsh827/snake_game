@@ -5,7 +5,7 @@ function init()
 	W = H = canvas.width = canvas.height = 450;
 	pen = canvas.getContext('2d'); // pen object to draw
 	cs = 28.2;  // cell size
-	game_over=false;
+	game_over=false; 
 	score=0;
 	food = getRandomFood();
      
@@ -90,20 +90,26 @@ function init()
 	};
 
 	snake.createSnake();
-	function keyPressed(e){
-		if(e.key=="ArrowRight"){
+	function keyPressed(e)
+	{
+		if(e.key=="ArrowRight")
+		{
 			snake.direction="right";
 		}
-		else if(e.key=="ArrowLeft"){
+		else if(e.key=="ArrowLeft")
+		{
 			snake.direction="left";
 		}
-		else if(e.key=="ArrowDown"){
+		else if(e.key=="ArrowDown")
+		{
 			snake.direction="down";
 		}
-		else if(e.key=="ArrowUp"){
+		else if(e.key=="ArrowUp")
+		{
 			snake.direction="up";
 		}
-		else{
+		else
+		{
 			alert("Wrong key pressed! Only use arrow keys to play.");
 		}
 
@@ -111,7 +117,8 @@ function init()
 	document.addEventListener('keydown',keyPressed)
 }
 
-function draw(){
+function draw()
+{
 	
 	pen.clearRect(0,0,W,H);//erase old rectangle
 	snake.drawSnake();
