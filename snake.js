@@ -3,37 +3,36 @@ function init()
 
 	canvas = document.getElementById("mycanvas");
 	W = H = canvas.width = canvas.height = 450;
-	pen = canvas.getContext('2d'); // pen object to draw
-	cs = 28.2;  // cell size
+	pen = canvas.getContext('2d'); 
+	cs = 28.2;  
 	game_over=false; 
 	score=0;
 	food = getRandomFood();
      
 
-	snake = {
+	snake = 
+	{
 		init_len:5,
 		color:"limegreen",
 		cells:[],
-		direction:"right", //default direction of snake
+		direction:"right", 
 
 		createSnake:function()
 		{
-			//assigning each cell co-ordinates to make snake
+			
 			for(var i=this.init_len;i>0;i--)
 			{
 				this.cells.push({x:i, y:0});
 			}
 		},
 
-		//for each cell we draw rectangle
+		
 		drawSnake:function()
 		{
 			for(var i=0;i<this.cells.length;i++)
 			{
 				pen.fillStyle = this.color;
 				
-				//multiplying by cell size(cs),so that rectangles will not overlap
-				//space between cells is 2 to make it appear like it
 				pen.fillRect(this.cells[i].x*cs, this.cells[i].y*cs, cs-2, cs-2);
 			}
 		},
@@ -80,7 +79,7 @@ function init()
 			var last_x = Math.round(W/cs);
 			var last_y = Math.round(H/cs);
 
-			//prevents snake from going out
+			
 			if(this.cells[0].y<0 || this.cells[0].x<0 || this.cells[0].x>=last_x || this.cells[0].y>=last_y)
 			{
 				game_over=true;
@@ -120,15 +119,13 @@ function init()
 function draw()
 {
 	
-	pen.clearRect(0,0,W,H);//erase old rectangle
+	pen.clearRect(0,0,W,H);
 	snake.drawSnake();
 	pen.fillStyle = food.color;
 	pen.fillRect(food.x*cs, food.y*cs, cs, cs);
 	
 }
 
-//we can write update directly here,but in OOPS ,each part is modular
-// so every function knows how to update itself
 
 function update()
 {
@@ -136,8 +133,6 @@ function update()
 }
 function getRandomFood()
 {
-	//math.random =generates no bw 0-1
-	//-cs so that whole food inside the grid,,divison by cs to make it multiple of cell size
 	var foodX = Math.round(Math.random()*(W-cs)/cs);
 	var foodY = Math.round(Math.random()*(H-cs)/cs);
 	var food=
